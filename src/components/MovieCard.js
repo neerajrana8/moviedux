@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles.css';
-function MovieCard({movie}){
+function MovieCard({movie, toggleWatchlist , isWatchListed}){
     const getRatingClass = (rating) => {
         if (rating >= 8){
             return "rating-good";
@@ -18,6 +18,12 @@ function MovieCard({movie}){
                 <h3 className="movie-card-title">{movie.title}</h3>
                 <p className="movie-card-genre">{movie.genre}</p>
                 <p className={`movie-card-rating ${getRatingClass(movie.rating)}`}>{movie.rating}</p>
+                <div>
+                    <label className="switch">
+                        <input type="checkbox" checked={isWatchListed} onChange={()=> toggleWatchlist(movie.id)}/>
+                        <span className="slider"><span className="slider-label">{isWatchListed ? "In Watchlist" : "Add to watchlist"}</span></span>
+                    </label>
+                </div>
             </div>
     </div>
     );
